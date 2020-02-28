@@ -1,0 +1,507 @@
+{% load staticfiles %}
+{% if request.user.is_active %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Sistema</title>
+  <link rel="shortcut icon" href="{% static 'img/taxi.png' %}" /> 
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+
+  <link rel="stylesheet" href="{% static 'adminlte/plugins/font-awesome/css/font-awesome.min.css' %}">
+  <!-- Ionicons -->
+    <link rel="stylesheet" href="{% static 'adminlte/dist/css/ionicons.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/adminlte.min.css' %}">
+
+  <!-- iCheck -->
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/iCheck/flat/blue.css' %}">
+  <!-- Morris chart -->
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/morris/morris.css' %}">
+  <!-- jvectormap -->
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.css' %}">
+  <!-- Date Picker -->
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/datepicker/datepicker3.css' %}">
+  <!-- Daterange picker -->
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/daterangepicker/daterangepicker-bs3.css' %}">
+  <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' %}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'adminlte/plugins/select2/select2.min.css' %}">
+ 
+  {% block style %}
+
+  {% endblock %}
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand border-bottom navbar-light bg-white ">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+      </li>
+     <!-- <li class="nav-item d-none d-sm-inline-block">
+        <a href="/t_bases_map/" class="nav-link">Home</a>
+      </li>
+-->
+    </ul>
+
+    <!-- SEARCH FORM 
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+-->
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+    
+   
+      <li class="nav-item dropdown">
+    <!--    <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>-->
+        <a id="spanNavegador" class="nav-link" data-toggle="dropdown" onclick="cargarTabla()" style="cursor: pointer;">
+          <i class="fa fa-bell-o"></i>
+          <span id="spanFolio" style="display: none" class="badge badge-danger navbar-badge"><div id="folio" ></div></span>
+        </a>
+    <!--    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>--->
+      </li>
+    
+
+         <li class="nav-item dropdown" onclick="cerrarLogin()">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+         {{ user.get_full_name.title }}    <i class="fa  fa-unlock-alt"></i>
+         <!-- <span class="badge badge-warning navbar-badge">15</span> -->
+        </a>
+      </li>
+    <!--  <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+            class="fa fa-th-large"></i></a>
+      </li>
+    -->
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar elevation-4 sidebar-dark-danger">
+    <!-- Brand Logo -->
+    <a href="/t_bases_map/" class="brand-link " >
+      
+  <img src="{% static 'img/taxi.png' %}" alt="Radio Taxi" class="brand-image img-circle elevation-3" style="opacity: .8">
+    
+
+
+
+      <span class="brand-text font-weight-light">Radio Taxi</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+
+          {% if user.profile.foto  %}
+  <img src="{% static ''%}archivos/{{user.profile.foto}}" width="160px" height="160px" class="img-circle elevation-2"  alt="User Image">
+      {% else %}
+          <img src="{% static 'adminlte/dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+          {% endif %}
+        </div>
+        <div class="info">
+          <a class="d-block">{{ user.first_name}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+     
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+
+
+ 
+          <li class="nav-item">
+            <a href="/solFormPen/" class="nav-link active">
+              <i class="nav-icon fa fa-fw fa-car"></i>
+              <p>
+                Solicitudes Pendientes
+               
+              </p>
+            </a>
+          </li> 
+
+          <li class="nav-item">
+            <a href="/histSolicitus/" class="nav-link">
+              <i class="nav-icon fa fa-fw fa-car"></i>
+              <p>
+              Historial de solicitudes           
+              </p>
+            </a>
+          </li> 
+
+
+<!--
+
+            <li class="nav-item has-treeview">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fa fa-plus-square-o"></i>
+              <p>
+                Externas
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+  
+                <li class="nav-item">
+            <a href="/t_proceso_admin/" class="nav-link">
+              <i class="nav-icon fa fa-circle-o text-info"></i>
+              <p>
+                Solicitudes
+              </p>
+            </a>
+          </li> 
+              <li class="nav-item">
+            <a href="/historial/" class="nav-link">
+              <i class="nav-icon fa fa-circle-o text-info"></i>
+              <p>
+               Historial
+              </p>
+            </a>
+          </li>
+    
+
+          <li class="nav-item">
+            <a href="/t_vehiculo_admin/" class="nav-link">
+              <i class="nav-icon fa fa-circle-o text-info"></i>
+              <p>
+                Ambulancias
+              </p>
+            </a>
+          </li> 
+  
+            </ul>
+          </li>
+
+
+
+
+          <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fa fa-fw fa-gears"></i>
+              <p>
+                Catalogos
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+
+            <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                <a href="/t_vehiculo/" class="nav-link">
+                  <i class="nav-icon fa fa-circle-o text-info"></i>
+                  <p>Ambulancias</p>
+                </a>
+              </li>
+           
+                 <li class="nav-item">
+                <a href="/t_origen/" class="nav-link">
+                  <i class="nav-icon fa fa-circle-o text-info"></i>
+                  <p>Origen</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/t_ubicacion" class="nav-link">
+                  <i class="nav-icon fa fa-circle-o text-info"></i>
+                  <p>Ubicaciones</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="/t_incidente/" class="nav-link">
+                  <i class="nav-icon fa fa-circle-o text-info"></i>
+                  <p>Incidentes</p>
+                </a>
+              </li>
+                  <li class="nav-item">
+                <a href="/t_tum/" class="nav-link">
+                  <i class="nav-icon fa fa-circle-o text-info"></i>
+                  <p>Personal Operativo</p>
+                </a>
+              </li>
+ 
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-fw fa-file-pdf-o"></i>
+              <p>
+                Informes
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/descargarBD/" class="nav-link">
+                  <i class="nav-icon fa fa-circle-o text-info"></i>
+                  <p>Base de Datos</p>
+                </a>
+              </li>
+         <li class="nav-item">
+                <a href="pages/UI/icons.html" class="nav-link">
+                  <i class="nav-icon fa fa-circle-o text-info"></i>
+                   <p>BD HP</p>
+                </a>
+              </li>-->
+            
+     <!--       </ul>
+          </li>
+ 
+               <li class="nav-item">
+            <a href="{% static ''%}archivos/manua_usuario_siap.pdf" target="_blank" class="nav-link">
+              <i class="nav-icon fa fa-fw fa-book"></i>
+              <p>
+                Manual de usuario              
+              </p>
+            </a>
+          </li> -->
+           
+        </ul>
+      </nav>
+  
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+   
+    <section class="content">
+
+     {% block conenedor %}
+
+     {% endblock %}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+     <strong>Copyright &copy; 2020 </strong> Todos los derechos 
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.0.2
+    </div>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{% static 'adminlte/plugins/jquery/jquery.min.js' %}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{% static 'adminlte/dist/js/jquery-ui.min.js' %}"></script>
+
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Morris.js charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="{% static 'adminlte/plugins/morris/morris.min.js' %}"></script>
+<!-- Sparkline -->
+<script src="{% static 'adminlte/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+<!-- jvectormap -->
+<script src="{% static 'adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+<script src="{% static 'adminlte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{% static 'adminlte/plugins/knob/jquery.knob.js' %}"></script>
+<!-- daterangepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="{% static 'adminlte/plugins/daterangepicker/daterangepicker.js' %}"></script>
+<!-- datepicker -->
+
+<script src="{% static 'adminlte/plugins/datepicker/bootstrap-datepicker.js' %}"></script>
+
+<!-- Bootstrap WYSIHTML5 -->
+<script src="{% static 'adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js' %}"></script>
+<!-- Slimscroll -->
+<script src="{% static 'adminlte/plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<!-- FastClick -->
+<script src="{% static 'adminlte/plugins/fastclick/fastclick.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'adminlte/dist/js/adminlte.js' %}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'adminlte/dist/js/demo.js' %}"></script>
+
+<script src="{% static 'adminlte/dist/js/sweetalert.js' %}"></script>
+
+<script>
+function cargarTabla()
+{
+   table_origen.ajax.url("../estatus/solicitudFormulario/?estatus=2").load(); 
+   $("#spanFolio").hide();
+}
+
+
+function verificarSolicitudes() {
+
+
+    $.ajax({
+    url:"/estatusSolicitudes/",
+    cache:false,
+    type:"GET",
+    dataType:"json",
+    success:function(respuesta){   
+    var numTabla = table_origen.rows().count(); 
+    if(respuesta.pendientes>numTabla)
+    { $("#spanFolio").show();
+      $("#folio").html(respuesta.pendientes);
+    }
+           }
+         });
+}
+
+setInterval(function(){ verificarSolicitudes(); }, 10000);
+
+
+
+
+var g_urls = {
+    'login': '{% url "rest_login" %}',
+    'logout': '{% url "rest_logout" %}',
+};
+
+var g_auth = localStorage.getItem("auth");
+if(g_auth == null) {
+    g_auth = sessionStorage.getItem("auth");
+}
+
+if(g_auth) {
+    try {
+        g_auth = JSON.parse(g_auth);
+    } catch(error) {
+        g_auth = null;
+    }
+}
+
+var getCookie = function(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+};
+var g_csrftoken = getCookie('csrftoken');
+  function cerrarLogin() {
+        console.log("Trying to logout");
+        $.ajax({
+            url: g_urls.logout,
+            method: "POST",
+            beforeSend: function(request) {
+              //  request.setRequestHeader("Authorization", "Token " + g_auth.key);
+            },
+            data: {
+                csrfmiddlewaretoken: g_csrftoken
+            }
+        }).done(function(data) {
+             document.location.href="/";
+            g_auth = null;
+            initLogin();
+        }).fail(function(data) {
+            console.log("FAIL: ", data);
+        });
+    };
+var initLogin = function() {
+    if(g_auth) {
+        $('#non-logged-in').hide();
+        $('#logged-in').show();
+        $('#span-username').html(g_auth.username);
+        if(g_auth.remember_me) {
+            localStorage.setItem("auth", JSON.stringify(g_auth));
+        } else {
+            sessionStorage.setItem("auth", JSON.stringify(g_auth));
+        }
+    } else {
+        $('#non-logged-in').show();
+        $('#logged-in').hide();
+        $('#span-username').html('');
+        localStorage.removeItem("auth");
+        sessionStorage.removeItem("auth");
+    }
+    $('#test-auth-response').html("");
+}
+
+
+
+
+
+    
+</script>
+{% block scripts %}
+
+{% endblock %}
+
+</body>
+</html>
+{% else %}
+<script type="text/javascript">
+  window.location="/";
+</script>
+{% endif %}

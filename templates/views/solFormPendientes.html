@@ -1,0 +1,198 @@
+{% extends 'views/indexadmin.html' %}
+{% load staticfiles %}
+{% block style %}
+  <link rel="stylesheet" href="{% static 'adminlte/plugins/datatables/dataTables.bootstrap4.css' %}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="stylesheet" href="{% static 'adminlte/dist/css/bootstrap-switch.css' %}">
+  
+ 
+{% endblock %}
+
+{% block conenedor %}
+
+
+<div class="card card-primary card-outline direct-chat direct-chat-primary">
+              <div class="card-header">
+               <h3><i class="fa fa-file-text-o"></i>Lista de Solicitudes Pendientes</h3>
+            
+                <div class="card-tools">
+              
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+              
+                   
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+             <div class="card-body" style="display: block;">
+
+
+
+<br>
+               <table id="tabla_origen" width="100%" style="font-size: 17px" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>              
+                <th>Folio</th>   
+                <th>Nombre</th>           
+                <th>Dirección Actual</th>  
+                <th>Dirección Destino</th>
+                <th>Teléfono</th>    
+                <th>Requirimientos</th>
+                <th>Atendido</th>     
+                <th></th>       
+            </tr>
+        </thead>
+         <tbody>
+        
+          </tbody>
+        <tfoot>
+              <tr>                 
+                <th>Folio</th> 
+                <th>Nombre</th>           
+                <th>Dirección Actual</th>  
+                <th>Dirección Destino</th>  
+                <th>Teléfono</th>  
+                <th>Requirimientos</th>
+                <th>Atendido</th>     
+                <th></th>       
+            </tr>
+        </tfoot>
+    </table>
+
+
+<br>
+             
+                <!-- /.direct-chat-pane -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer" style="display: block;">
+         
+              </div>
+              <!-- /.card-footer-->
+            </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script  src="{% static 'adminlte/dist/js/bootstrap-switch.js' %}" ></script>
+<script src="{% static 'adminlte/plugins/datatables/jquery.dataTables.js' %}"></script>
+<script src="{% static 'adminlte/plugins/datatables/dataTables.bootstrap4.js' %}"></script>
+
+
+
+<script src="{% static 'adminlte/dist/js/sweetalert.js' %}"></script> 
+<script type="text/javascript">
+  
+
+table_origen = $("#tabla_origen").DataTable(
+{
+"language": {
+  "url": "{% static 'adminlte/plugins/datatables/json/Spanish.json'%}"
+},
+"bProcessing": true,
+"sAjaxDataProp":"",
+"iDisplayStart": 0,
+"order": [[ 0, "desc" ]],
+"searching" : true,
+"paging": true,
+"scrollX": true,
+"ajax": "../estatus/solicitudFormulario/?estatus=0",
+
+"columns": [
+{ "data": "id" },
+{ "data": "nombreCompleto" },
+{ "data": "direccionActual" },
+{ "data": "direccionFinal" },
+{ "data": "telefono" },
+{ "data": "requerimientosAdicionales" },
+{ "data": "estatus" },
+{ "data": "id" },
+
+]
+, dom: 'Bfrtip',
+buttons: [
+'copy', 'csv', 'excel', 'pdf', 'print'
+],
+"columnDefs" :[ 
+
+{ 
+"targets": 6,
+"width": "10%",
+"render": function (data, type, row, meta) {
+  return " <input type='checkbox' id='che_validar'  name='che_validar' value='"+row.id+"' "+((data==1) ? ("checked='checked'") : "")+" data-size='mini' > ";
+}
+}
+                 ,
+                  {
+                      "targets": 7,
+                      "width": "1%",
+                       "render": function (data, type, row, meta )
+                        {
+                       if(row.estatus==2)
+                    return "<center><a data-toggle='tooltip' title='Cancelar'   style='color:red; cursor:pointer;' onclick='cancelar("+data+")' ><span class='fa fa-fw fa-trash'></span></a></center>";
+                    else 
+                      return "";
+
+                          }
+                 }                   
+],
+"drawCallback": function( settings ) {
+
+$("[name='che_validar']").bootstrapSwitch();
+$("[name='che_validar']").bootstrapSwitch('onText','✔');  
+$("[name='che_validar']").bootstrapSwitch('offText','X');
+$('input[name="che_validar"]').on('switchChange.bootstrapSwitch', function(event, state) {
+
+ state=(state?estatus=1:estatus=2);
+ $.ajax({url:"/api/solicitudFormulario/"+event.target.value,async:true,cache:false,dataType:"json",type:"PATCH", data:"estatus="+state,
+  success:function(respuesta)
+  { setTimeout(function(){ table_origen.ajax.url("../estatus/solicitudFormulario/?estatus=2").load(); }, 2000);
+  }
+});
+});
+}
+} );
+
+setTimeout(function(){ table_origen.ajax.url("../estatus/solicitudFormulario/?estatus=2").load(); }, 500);
+function cancelar(id){
+
+
+swal({
+  title: "¿Estás Seguro?",
+  text: "Desea Cancelar el folio: "+id,
+  icon: "error",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    $.ajax({
+          url:"/api/solicitudFormulario/"+id,
+          cache:false,
+          type:"PATCH",
+          data:"estatus=3",
+          dataType:"json",
+          beforeSend : function()
+       {    
+       } ,
+     success:function(respuesta){ 
+     swal("Eliminado!", "¡Se eliminó correctamente!", "success");    
+     }});
+        
+  } else {
+   // swal("Your imaginary file is safe!");
+  }
+});
+
+
+
+}
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,226 @@
+{% extends 'views/indexadmin.html' %}
+{% load staticfiles %}
+{% block style %}
+  <link rel="stylesheet" href="{% static 'adminlte/plugins/datatables/dataTables.bootstrap4.css' %}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="stylesheet" href="{% static 'adminlte/dist/css/bootstrap-switch.css' %}">
+  
+ 
+{% endblock %}
+
+{% block conenedor %}
+
+
+<div class="card card-primary card-outline direct-chat direct-chat-primary">
+              <div class="card-header">
+               <h3><i class="fa fa-file-text-o"></i>Lista de Solicitudes Pendientes</h3>
+            
+                <div class="card-tools">
+              
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+              
+                   
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+             <div class="card-body" style="display: block;">
+<center>
+  <br>
+<center>
+  <form  class="form_historial" id="form_historial" name="form_historial" autocomplete="off" novalidate>
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+     <div class="col-md-2 col-sm-4">
+      <h6 class="card-title">Fecha Inicio</h6>
+      <input class="form-control" type="text" name="f1_p" id="f1_p" required="">
+    </div>
+    <div class="col-md-2 col-sm-4">
+      <h6 class="card-title">Fecha Final</h6>
+      <input class="form-control" type="text" name="f2_p" id="f2_p" required="">
+    </div> 
+          <div class="col-md-2 col-sm-4">
+        <h6 class="card-title">Solicitudes</h6>
+       <select class="form-control" id="estatus" name="estatus"  required>
+       <option value=""></option>
+        <option value="1">Antendidas</option>  
+        <option value="2">Pendientes</option> 
+        <option value="3">Canceladas</option>
+       </select>
+     </div>
+      <div class="col-md-1">
+      </div>                 
+  </div>
+  <br>      
+</center>
+  <button type="submit"   class="btn btn-outline-info">Buscar</button>
+</form>
+
+
+</center>
+
+
+<br>
+               <table id="tabla_historial" width="100%" style="font-size: 17px" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>              
+                <th>Folio</th>   
+                <th>Nombre</th>           
+                <th>Dirección Actual</th>  
+                <th>Dirección Destino</th>
+                <th>Teléfono</th>    
+                <th>Requirimientos</th>
+               <!--  <th></th> -->
+                 
+     
+            </tr>
+        </thead>
+         <tbody>
+        
+          </tbody>
+        <tfoot>
+              <tr>                 
+                <th>Folio</th> 
+                <th>Nombre</th>           
+                <th>Dirección Actual</th>  
+                <th>Dirección Destino</th>  
+                <th>Teléfono</th>  
+                <th>Requirimientos</th>
+              <!--  <th></th> -->
+        
+    
+            </tr>
+        </tfoot>
+    </table>
+
+
+<br>
+             
+                <!-- /.direct-chat-pane -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer" style="display: block;">
+         
+              </div>
+              <!-- /.card-footer-->
+            </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script  src="{% static 'adminlte/dist/js/bootstrap-switch.js' %}" ></script>
+<script src="{% static 'adminlte/plugins/datatables/jquery.dataTables.js' %}"></script>
+<script src="{% static 'adminlte/plugins/datatables/dataTables.bootstrap4.js' %}"></script>
+
+
+
+<script src="{% static 'adminlte/dist/js/sweetalert.js' %}"></script> 
+<script type="text/javascript">
+ 
+ $( document ).ready(function() {
+   table_origen =$('#tabla_origen').DataTable();
+    $("#spanNavegador").hide();
+    //alert("");
+});
+tabla_historial = $("#tabla_historial").DataTable(
+{
+"language": {
+  "url": "{% static 'adminlte/plugins/datatables/json/Spanish.json'%}"
+},
+"bProcessing": true,
+"sAjaxDataProp":"",
+"iDisplayStart": 0,
+"order": [[ 0, "asc" ]],
+"searching" : true,
+"paging": true,
+"scrollX": true,
+"ajax": "../estatus/solicitudFormulario/?estatus=0",
+
+"columns": [
+{ "data": "id" },
+{ "data": "nombreCompleto" },
+{ "data": "direccionActual" },
+{ "data": "direccionFinal" },
+{ "data": "telefono" },
+{ "data": "requerimientosAdicionales" },
+//{ "data": "id" },
+
+]
+, dom: 'Bfrtip',
+buttons: [
+'copy', 'csv', 'excel', 'pdf', 'print'
+],
+"columnDefs" :[    /* 
+{
+                      "targets": 6,
+                      "width": "1%",
+                       "render": function (data, type, row, meta )
+                        { 
+                 var a= moment(row.horaSolicitud).format('YYYY-MM-DD HH:mm:ss');
+                     var b= moment(row.horaAtencion).format('YYYY-MM-DD HH:mm:ss');
+                     var c= a-b;
+                     console.log(a);
+                    return "<center><a data-toggle='tooltip' title='Detalles'   style=' cursor:pointer;' onclick='detalles("+data+")' ><span class='fa fa-fw fa-expand'></span></a></center>";
+
+
+                          }
+                 } */
+                       
+],
+
+} );
+
+function detalles(id){
+
+
+
+
+}
+
+(function() {
+ 
+  window.addEventListener('load', function() {
+
+    var forms = document.getElementsByClassName('form_historial');
+   
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+         event.preventDefault();
+        event.stopPropagation();
+        form.classList.add('was-validated');
+            if (form.checkValidity()) {
+                moment.locale('es');
+  //var fechaAcuse = moment($("#fechaAcuse").val(), "DD-MM-YYYY HH:mm:ss a").format("YYYY-MM-DD HH:mm:ss");
+
+  var f1_p = moment($("#f1_p").val(), 'DD-MM-YYYY').format('YYYY-MM-DD HH:mm:ss');
+  var f2_p = moment($("#f2_p").val(), 'DD-MM-YYYY').add(1, 'days').format('YYYY-MM-DD HH:mm:ss');
+  //f2_p.add(1, 'days'); 
+  //console.log(f2_p); 
+
+  //console.log(f1_p);         
+       tabla_historial.ajax.url("../solicitudHistorial/?estatus="+jQuery("#estatus").val()+"&fechaInicio="+f1_p+"&fechaFinal="+f2_p).load();   
+    // window.location="/BDhp/?fechaInicio="+$("#f1_hp").val()+"&fechaFinal="+$("#f2_hp").val();
+ //swal("Base de Datos HP", "¡Se Descargo correctamente!", "success"); 
+
+        }
+
+        
+      }, false);
+
+    });
+  }, false);
+})();
+  $("input").datepicker({
+    autoclose:true,
+    format:'dd-mm-yyyy'
+});
+
+</script>
+
+
+{% endblock %}

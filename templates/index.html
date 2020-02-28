@@ -1,0 +1,940 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+	<!--<link rel="icon" href="images/favicon.ico">-->
+  
+    <title>Sistema Radio Taxi Tabasco</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
+   
+    <link rel="stylesheet" href="{% static '/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static '/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static '/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static '/css/ionicons.min.css' %}">
+    
+    <link rel="stylesheet" href="{% static '/css/flaticon.css' %}">
+ <!--   <link rel="stylesheet" href="{% static '/css/font/taxiicon/flaticon.css' %}">-->
+
+
+    <link rel="stylesheet" href="{% static '/css/icomoon.css' %} ">
+    <link rel="stylesheet" href="{% static '/css/style.css' %} ">
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+	  
+	  
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html"><span>Sistema </span> Radio Taxi<span> Tabasco</span></a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Inicio</span></a></li>
+	          <li class="nav-item"><a href="#services-section" class="nav-link"><span>Servicios</span></a></li>
+	          <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Parque Vehícular</span></a></li>
+	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>Nosotros</span></a></li>
+	          <!--li class="nav-item"><a href="#testimony-section" class="nav-link"><span>Testimony</span></a></li-->
+	          <!--li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li-->
+	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Solicita tu servicio</span></a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  <section id="home-section" class="hero">
+	  	<h3 class="vr">Bienvenido a Sistema Radio Taxi Tabasco</h3>
+		  <div class="home-slider js-fullheight owl-carousel">
+	      <div class="slider-item js-fullheight">
+	      	<div class="overlay"></div>
+	        <div class="container-fluid p-0">
+	          <div class="row d-md-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+	          	<div class="one-third order-md-last img js-fullheight" style="background-image:url({% static 'images/bg_1.jpg' %});">
+	          		<div class="overlay"></div>
+	          	</div>
+		          <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '60%' }">
+		          	<div class="text">
+		          		<span class="subheading">El mejor Servicio de Transporte de Tabasco</span>
+			            <h1 class="mb-4 mt-3">Amabilidad, Confianza y <span>seguridad</span></h1>
+			            <p>Día con día buscamos la mejora de calidad y seguridad en nuestro equipo, permitiendonos brindarte viajes seguros y confortables.</p>
+			            
+			            <!--p><a href="#" class="btn btn-primary px-5 py-3 mt-3">Get in touch</a></p-->
+		            </div>
+		          </div>
+	        	</div>
+	        </div>
+	      </div>
+
+	      <!--div class="slider-item js-fullheight">
+	      	<div class="overlay"></div>
+	        <div class="container-fluid p-0">
+	          <div class="row d-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+	          	<div class="one-third order-md-last img js-fullheight" style="background-image:url(images/bg_2.jpg);">
+	          		<div class="overlay"></div>
+	          	</div>
+		          <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+		          	<div class="text">
+		          		<span class="subheading">Confiabilidad y seguridad Radio Taxis Tabasco</span>
+			            <h1 class="mb-4 mt-3"><span>Estratégico,</span> limpieza y buen servicio <br>Nos<span> distingue</span></h1>
+			            <p>Buscamos mantener nuestras unidades con la mejor higiene, nuestros choferes con la mejor capacitación de trato al cliente. Simplemente <span>El mejor servicio de transporte del Estado de Tabasco</span></p>
+			            
+			            <p><a href="#" class="btn btn-primary px-5 py-3 mt-3">Get in touch</a></p>
+		            </div>
+		          </div>
+	        	</div>
+	        </div>
+	      </div-->
+	    </div>
+    </section>
+		
+
+    <section class="ftco-section ftco-no-pb ftco-no-pt ftco-services bg-light" id="services-section">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4 ftco-animate py-5 nav-link-wrap">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link px-4 active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true"><span class="mr-3 flaticon-web-design"></span> Servicios</a>
+
+              <a class="nav-link px-4" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false"><span class="mr-3 flaticon-flasks"></span> Zona Tabasco 2000</a>
+
+              <a class="nav-link px-4" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false"><span class="mr-3 flaticon-analysis"></span> Zona Atasta</a>
+
+              <a class="nav-link px-4" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false"><span class="mr-3 flaticon-ideas"></span> Zona Industrial / Gaviotas / Tierra Colorada </a>
+
+              <a class="nav-link px-4" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-4" aria-selected="false"><span class="mr-3 flaticon-ux-design"></span> WhatsApp</a>
+
+              <!--a class="nav-link px-4" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-5" aria-selected="false"><span class="mr-3 flaticon-innovation"></span> Facebook</a>
+
+              <a class="nav-link px-4" id="v-pills-6-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-6" aria-selected="false"><span class="mr-3 flaticon-idea"></span> Creative</a-->
+            </div>
+          </div>
+          <div class="col-md-8 ftco-animate p-4 p-md-5 d-flex align-items-center">
+            
+            <div class="tab-content pl-md-5" id="v-pills-tabContent">
+
+              <div class="tab-pane fade show active py-5" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+                <span class="icon mb-3 d-block flaticon-web-design"></span>
+                <h2 class="mb-4">Servicios</h2>
+                <p>Brindamos servicios a todo el Estado de Tabasco, desde hacerte tu tour turístico, hasta transportarte todos los días de tu casa al trabajo</p>
+                <!--p><a href="#" class="btn btn-primary px-4 py-3">Learn More</a></p-->
+              </div>
+
+              <div class="tab-pane fade py-5" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+                <span class="icon mb-3 d-block flaticon-flasks"></span>
+                <h2 class="mb-4">Zona Tabasco 2000</h2>
+                <p>Usted podrá comunicarse a cualquiera de los números desplegados en el botón, si se encuentra en la Zona de Tabasco 2000, su servicio llegará más rápido</p>
+                <p>Para mantener un control de los viajes, le recomendamos mantenerse al tanto por si la asignación del chofer cambia en disponibilidad de cercanía y tiempos</p>
+                <p><a href="#" class="btn btn-primary px-4 py-3" data-toggle="modal" data-target="#modal2000">Teléfonos Zona Tabasco 2000</a></p>
+
+              </div>
+
+              <div class="tab-pane fade py-5" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+                <span class="icon mb-3 d-block flaticon-analysis"></span>
+                <h2 class="mb-4">Zona Atasta</h2>
+                <p>Usted podrá comunicarse a cualquiera de los números desplegados en el botón, si se encuentra en la Zona de Atasta, su servicio llegará más rápido</p>
+                <p>Para mantener un control de los viajes, le recomendamos mantenerse al tanto por si la asignación del chofer cambia en disponibilidad de cercanía y tiempos</p>
+                <p><a href="#" class="btn btn-primary px-4 py-3" data-toggle="modal" data-target="#modalAtasta">Teléfonos</a></p>
+              
+			  </div>
+
+              <div class="tab-pane fade py-5" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+                <span class="icon mb-3 d-block flaticon-ideas"></span>
+                <h2 class="mb-4">Zona Industrial / Gaviotas / Tierra Colorada </h2>
+                <p>Usted podrá comunicarse a cualquiera de los números desplegados en el botón, si se encuentra en la Zona Industrial / Tierra Colorada ó Gaviotas, su servicio llegará más rápido</p>
+                <p>Para mantener un control de los viajes, le recomendamos mantenerse al tanto por si la asignación del chofer cambia en disponibilidad de cercanía y tiempos</p>
+                <p><a href="#" class="btn btn-primary px-4 py-3" data-toggle="modal" data-target="#modalIndustrial">Teléfonos</a></p>
+              </div>
+
+              
+
+              <div class="tab-pane fade py-5" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
+                <span class="icon mb-3 d-block flaticon-innovation"></span>
+                <h2 class="mb-4">WhatsApp</h2>
+                <p>Comunicate con nosotros de manera más rápida con nuestro servicio vía WhatsApp</p>
+                <p><a href="https://api.whatsapp.com/send?phone=+19932911324" class="btn btn-primary px-4 py-3">Solicitar Vía WhatsApp</a></p>
+              </div>
+
+              <!--div class="tab-pane fade py-5" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-6-tab">
+                <span class="icon mb-3 d-block flaticon-idea"></span>
+                <h2 class="mb-4">Creative Solution</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
+                <p>Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.</p>
+                <p><a href="#" class="btn btn-primary px-4 py-3">Learn More</a></p>
+              </div-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section-2 img" style="background-image: url({% static 'images/bg_3.jpg' %});">
+    	<div class="container">
+    		<div class="row d-md-flex justify-content-end">
+    			<div class="col-md-6">
+    				<div class="row">
+    					<div class="col-md-12">
+    						<a  class="services-wrap ftco-animate">
+    							<div class="icon d-flex justify-content-center align-items-center">
+    								<span class="ion-ios-arrow-back"></span>
+    								<span class="ion-ios-arrow-forward"></span>
+    							</div>
+    							<h2>Servicios Especiales</h2>
+    							<p>Hacemos servicios especiales en toda le Entidad, las 24 horas del día, los 365 días del año</p>
+    						</a>
+    						<a class="services-wrap ftco-animate">
+    							<div class="icon d-flex justify-content-center align-items-center">
+    								<span class="ion-ios-arrow-back"></span>
+    								<span class="ion-ios-arrow-forward"></span>
+    							</div>
+    							<h2>Seguridad</h2>
+    							<p>Todos nuestros viajes se encuentran protegidos y en seguimiento por la central de taxis</p>
+    						</a>
+    						<a  class="services-wrap ftco-animate">
+    							<div class="icon d-flex justify-content-center align-items-center">
+    								<span class="ion-ios-arrow-back"></span>
+    								<span class="ion-ios-arrow-forward"></span>
+    							</div>
+    							<h2>Choferes capacitados</h2>
+    							<p>Si no te brindan un servicio de calidad, comunícate para darte la mejor solución y experiencia en tus viajes</p>
+    						</a>
+    						<a  class="services-wrap ftco-animate">
+    							<div class="icon d-flex justify-content-center align-items-center">
+    								<span class="ion-ios-arrow-back"></span>
+    								<span class="ion-ios-arrow-forward"></span>
+    							</div>
+    							<h2>Tour turísticos</h2>
+    							<p>¿Vienes a conocer? Eres local y te interesa una experiencia de viajero para conocer más de nuestro bello Estado. Comunícate para darte información más completa</p>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+    <section class="ftco-section ftco-project bg-light" id="projects-section">
+    	<div class="container px-md-5">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+          	<span class="subheading">Parque vehícular</span>
+            <h2 class="mb-4">Nuestros vehículos</h2>
+            <p>Estamos en constante actualización, por lo que nuestros vehículos te darán una experiencia de viaje confortable, segurida y rápida</p>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-12 testimonial">
+            <div class="carousel-project owl-carousel">
+            	<div class="item">
+            		<div class="project">
+		    					<div class="img">
+				    				<img src="{% static 'images/project-1.jpg' %}" class="img-fluid" alt="Colorlib Template">
+				    				<div class="text px-4">
+				    					<!--h3><a href="#">Work Name</a></h3>
+				    					<span>Web Design</span-->
+				    				</div>
+			    				</div>
+		    				</div>
+            	</div>
+            	<div class="item">
+            		<div class="project">
+		    					<div class="img">
+				    				<img src="{% static 'images/project-2.jpg' %}" class="img-fluid" alt="Colorlib Template">
+				    				<div class="text px-4">
+				    					<!--h3><a href="#">Work Name</a></h3>
+				    					<span>Web Design</span-->
+				    				</div>
+			    				</div>
+		    				</div>
+            	</div>
+            	<div class="item">
+            		<div class="project">
+		    					<div class="img">
+				    				<img src="{% static 'images/project-3.jpg' %}" class="img-fluid" alt="Colorlib Template">
+				    				<div class="text px-4">
+				    					<!--h3><a href="#">Work Name</a></h3>
+				    					<span>Web Design</span-->
+				    				</div>
+			    				</div>
+		    				</div>
+            	</div>
+            	<div class="item">
+            		<div class="project">
+		    					<div class="img">
+				    				<img src="{% static 'images/project-4.jpg' %}" class="img-fluid" alt="Colorlib Template">
+				    				<div class="text px-4">
+				    					<!--h3><a href="#">Work Name</a></h3>
+				    					<span>Web Design</span-->
+				    				</div>
+			    				</div>
+		    				</div>
+            	</div>
+            	<div class="item">
+            		<div class="project">
+		    					<div class="img">
+				    				<img src="{% static 'images/project-5.jpg' %}" class="img-fluid" alt="Colorlib Template">
+				    				<div class="text px-4">
+				    					<!--h3><a href="#">Work Name</a></h3>
+				    					<span>Web Design</span-->
+				    				</div>
+			    				</div>
+		    				</div>
+            	</div>
+            	<div class="item">
+            		<div class="project">
+		    					<div class="img">
+				    				<img src="{% static 'images/project-6.jpg' %}" class="img-fluid" alt="Colorlib Template">
+				    				<div class="text px-4">
+				    					<!--h3><a href="#">Work Name</a></h3>
+				    					<span>Web Design</span-->
+				    				</div>
+			    				</div>
+		    				</div>
+            	</div>
+            </div>
+          </div>
+    		</div>
+    	</div>
+    </section>
+		
+
+		<section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
+    	<div class="container">
+    		<div class="row d-flex">
+    			<div class="col-md-6 col-lg-5 d-flex">
+    				<div class="img d-flex align-self-stretch align-items-center" style="background-image:url({% static 'images/about.png' %});">
+    				</div>
+    			</div>
+    			<div class="col-md-6 col-lg-7 pl-lg-5 py-5">
+    				<div class="py-md-5">
+	    				<div class="row justify-content-start pb-3">
+			          <div class="col-md-12 heading-section ftco-animate">
+			          	<span class="subheading">Radio Taxis Tabasco</span>
+			            <h2 class="mb-4" style="font-size: 34px; text-transform: capitalize;">Nosotros somos Radio Taxis Tabasco</h2>
+						<p>Conocemos las necesidades de nuestros clientes y del servicio de transporte que requiere el Estado, por lo que tenemos al personal mejor capacitado, los vehículos más actualizados y la mejor experiencia de viaje</p>
+						<p>Por lo que viajar con nosotros te garantizará la total integridad de tu persona como de tus acompañantes, así como si se te olvida algún objeto en nuestro vehículo, tendrás la completa seguridad y certeza que te lo devolveremos.</p>
+						<p>La necesidad creciente de transporte nos orilla a mejorar, a incentivar y capacitarnos para que seamos la opción número uno de transporte en el Estado de Tabasco</p>
+			          </div>
+			        </div>
+		          <div class="counter-wrap ftco-animate d-flex mt-md-3">
+	              <div class="text p-4 bg-primary">
+	              	<p class="mb-0">
+		                <span class="number" data-number="38">0</span>
+		                <span>Años de experiencia nos respaldan</span>
+	                </p>
+	              </div>
+		          </div>
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section>
+
+    <!--section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-6 heading-section text-center ftco-animate">
+          	<span class="subheading">About Us</span>
+            <h2 class="mb-4">Our Staff</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+          </div>
+        </div>
+        <div class="row">
+					<div class="col-md-6 col-lg-3 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url(images/staff-1.jpg);"></div>
+							</div>
+							<div class="text d-flex align-items-center pt-3 text-center">
+								<div>
+									<h3 class="mb-2">Lloyd Wilson</h3>
+									<span class="position mb-4">CEO, Founder</span>
+									<div class="faded">
+										<ul class="ftco-social text-center">
+			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			              </ul>
+		              </div>
+		            </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url(images/staff-2.jpg);"></div>
+							</div>
+							<div class="text d-flex align-items-center pt-3 text-center">
+								<div>
+									<h3 class="mb-2">Rachel Parker</h3>
+									<span class="position mb-4">Web Designer</span>
+									<div class="faded">
+										<ul class="ftco-social text-center">
+			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			              </ul>
+		              </div>
+		            </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url(images/staff-3.jpg);"></div>
+							</div>
+							<div class="text d-flex align-items-center pt-3 text-center">
+								<div>
+									<h3 class="mb-2">Ian Smith</h3>
+									<span class="position mb-4">Web Developer</span>
+									<div class="faded">
+										<ul class="ftco-social text-center">
+			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			              </ul>
+		              </div>
+		            </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url(images/staff-4.jpg);"></div>
+							</div>
+							<div class="text d-flex align-items-center pt-3 text-center">
+								<div>
+									<h3 class="mb-2">Alicia Henderson</h3>
+									<span class="position mb-4">Graphic Designer</span>
+									<div class="faded">
+										<ul class="ftco-social text-center">
+			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			              </ul>
+		              </div>
+		            </div>
+							</div>
+						</div>
+					</div>
+				</div>
+    	</div>
+    </section>
+
+		<section class="ftco-section testimony-section" id="testimony-section">
+      <div class="container">
+        <div class="row justify-content-center pb-3">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2 class="mb-4">Happy Clients</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate justify-content-center">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text px-4 pb-5">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">John Fox</p>
+                    <span class="position">Businessman</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img" style="background-image: url(images/person_2.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text px-4 pb-5">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">John Fox</p>
+                    <span class="position">Businessman</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img" style="background-image: url(images/person_3.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text px-4 pb-5">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">John Fox</p>
+                    <span class="position">Businessman</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img" style="background-image: url(images/person_4.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text px-4 pb-5">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">John Fox</p>
+                    <span class="position">Businessman</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img" style="background-image: url(images/person_3.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text px-4 pb-5">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">John Fox</p>
+                    <span class="position">Businessman</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section bg-light" id="blog-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <span class="subheading">Blog</span>
+            <h2 class="mb-4">Our Blog</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+              	<div class="d-flex align-items-center pt-2 mb-4 topp">
+              		<div class="one mr-2">
+              			<span class="day">12</span>
+              		</div>
+              		<div class="two">
+              			<span class="yr">2019</span>
+              			<span class="mos">March</span>
+              		</div>
+              	</div>
+                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                <div class="d-flex align-items-center mt-4 meta">
+	                <p class="mb-0"><a href="#" class="btn btn-primary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
+	                <p class="ml-auto mb-0">
+	                	<a href="#" class="mr-2">Admin</a>
+	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+	                </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+              	<div class="d-flex align-items-center pt-2 mb-4 topp">
+              		<div class="one mr-2">
+              			<span class="day">10</span>
+              		</div>
+              		<div class="two">
+              			<span class="yr">2019</span>
+              			<span class="mos">March</span>
+              		</div>
+              	</div>
+                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                <div class="d-flex align-items-center mt-4 meta">
+	                <p class="mb-0"><a href="#" class="btn btn-primary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
+	                <p class="ml-auto mb-0">
+	                	<a href="#" class="mr-2">Admin</a>
+	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+	                </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry">
+              <a href="single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+              	<div class="d-flex align-items-center pt-2 mb-4 topp">
+              		<div class="one mr-2">
+              			<span class="day">05</span>
+              		</div>
+              		<div class="two">
+              			<span class="yr">2019</span>
+              			<span class="mos">March</span>
+              		</div>
+              	</div>
+                <h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                <div class="d-flex align-items-center mt-4 meta">
+	                <p class="mb-0"><a href="#" class="btn btn-primary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
+	                <p class="ml-auto mb-0">
+	                	<a href="#" class="mr-2">Admin</a>
+	                	<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+	                </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section-->
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <span class="subheading">Solicita tu servicio</span>
+            <h2 class="mb-4">Contáctanos</h2>
+            <p>Solicita tus servicios a un clic de distancia. Recuerda que también puedes hacerlo por teléfono</p>
+          </div>
+        </div>
+        <div class="row d-flex contact-info mb-5">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-map-signs"></span>
+          		</div>
+          		<h3 class="mb-4">Dirección</h3>
+	            <p><a href="https://www.google.com/maps?ll=18.003128,-92.946639&z=14&t=m&hl=es-419&gl=MX&mapclient=embed&cid=13173733044764519191">
+				Vía 3 esquina con esquina 27 de febrero Tabasco 2000, 86179</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-phone2"></span>
+          		</div>
+          		<h3 class="mb-4">Número de contacto</h3>
+	            <p><a href="tel:993 316 6422">993 316 6422</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-paper-plane"></span>
+          		</div>
+          		<h3 class="mb-4">Correo Electrónico</h3>
+	            <p><a href="mailto:radiotaxistabasco@gmail.com">radiotaxistabasco@gmail.com</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-globe"></span>
+          		</div>
+          		<h3 class="mb-4">Página Web</h3>
+	            <p><a href="#">radiotaxistabasco.com</a></p>
+	          </div>
+          </div>
+        </div>
+        <div class="row no-gutters block-9">
+          <div class="col-md-6 order-md-last d-flex">
+            <form class="form_historial bg-light p-5 contact-form"  id="form_historial" name="form_historial" autocomplete="off" novalidate >
+
+			  <h2 style="text-align: center;">Solicita tu servicio a través del portal</h2>
+
+              <div class="form-group">
+                <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control" placeholder="Nombre" required="">
+              </div>
+              <div class="form-group">
+                <input type="number" onkeypress="return onlyNumberKey(event)" 
+                   maxlength="11" id="telefono" name="telefono" class="form-control" placeholder="Teléfono"  required="">
+              </div>
+              <div class="form-group">
+                <input type="text" id="direccionActual" name="direccionActual" class="form-control" placeholder="Dirección de solicitud" required="">
+              </div>
+			  <div class="form-group">
+                <input type="text" id="direccionFinal" name="direccionFinal" class="form-control" placeholder="Dirección de destino" required="">
+              </div>
+              <div class="form-group">
+                <textarea name="requerimientosAdicionales" id="requerimientosAdicionales" cols="30" rows="7" class="form-control" placeholder="Comentario adicional" ></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Enviar mensaje" class="btn btn-primary py-3 px-5">
+              </div>
+            </form>
+          
+          </div>
+          <div class="col-md-6 d-flex">
+			<iframe style="float:center" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15177.90158696193!2d-92.95539353022463!3d18.003128000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85edd7702072d201%3A0xb6d280682303ab17!2sSistema%20De%20Radio%20Taxi!5e0!3m2!1ses-419!2smx!4v1582671964808!5m2!1ses-419!2smx" width="600" height="700" frameborder="0" style="border:0;" ></iframe>
+          <div>
+		  <!--div class="col-md-6 d-flex">
+          	<div id="map" class="bg-white"></div>
+          </div-->
+        </div>
+      </div>
+    </section>
+		
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Acerca de Radio Taxis Tabasco</h2>
+              <p>Somos una empresa socialmente responsable, trabajando en pro de la sociedad tabasqueña brindando servicio de transporte seguro.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.facebook.com/Sistema-Radio-Taxi-441725583302658/"><span class="icon-facebook"></span></a></li>
+                <!--li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li-->
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Links</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Inicio</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Servicios</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Parque vehícular</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Nosotros</a></li>
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Solicita tu viaje</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Servicios</h2>
+              <ul class="list-unstyled">
+                <li><a ><span class="icon-long-arrow-right mr-2"></span>Transporte Privado</a></li>
+                <li><a><span class="icon-long-arrow-right mr-2"></span>Transporte Colectivo</a></li>
+                <li><a ><span class="icon-long-arrow-right mr-2"></span>Transporte Turístico</a></li>
+                <li><a ><span class="icon-long-arrow-right mr-2"></span>Servicios Especiales</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Tienes preguntas?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">Vía 3 esquina con esquina 27 de febrero Tabasco 2000</span></li>
+	                <li><a 	><span class="icon icon-phone"></span><span class="text">993 316 6422</span></a></li>
+	                <li><a ><span class="icon icon-envelope"></span><span class="text">radiotaxistabasco@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+			<p>Derechos Reservados | Radio Taxis Tabasco &copy; 2020<p>
+            <!--p>< Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. >
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a  target="_blank">Colorlib</a>
+  < Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. ></p-->
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  <!-- {% static '' %} --->
+  <script src="{% static 'adminlte/plugins/moment/moment.min.js' %}"></script>
+  <script src="{% static 'adminlte/plugins/moment/moment-with-locales.js' %}"></script>
+  <script src="{% static 'adminlte/dist/js/sweetalert.js' %}"></script>
+  <script src="{% static '/js/jquery.min.js' %}"></script>
+  <script src="{% static '/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static '/js/popper.min.js' %}"></script>
+  <script src="{% static '/js/bootstrap.min.js' %}"></script>
+  <script src="{% static '/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static '/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static '/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static '/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static '/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static '/js/aos.js' %}"></script>
+  <script src="{% static '/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static '/js/scrollax.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static '/js/google-map.js' %}"></script>
+  
+  <script src="{% static '/js/main.js' %}"></script>
+
+
+<div class="modal fade" id="modalAtasta" role="dialog">
+	<div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Teléfonos Zona Atasta</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <p>Aquí está el listado para comunicarte y solicitar tu servicio</p>
+
+		  <p><a href="tel:3151465">3 15 14 65</a></p>
+		  <p><a href="tel:3152339">3 15 23 39</a></p>
+		  <p><a href="tel:3158124">3 15 81 24</a></p>
+		  <p><a href="tel:3158233">3 15 82 33</a></p>
+		  <p><a href="tel:3158333">3 15 83 33</a></p>
+		  <p><a href="tel:3158433">3 15 84 33</a></p>
+		  <p><a href="tel:3158533">3 15 85 33</a></p>
+		  <p><a href="tel:3158633">3 15 86 33</a></p>
+		  <p><a href="tel:3158733">3 15 87 33</a></p>
+
+        </div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+    </div>
+</div>
+
+
+<!--INDUSTRIAL-->
+<div class="modal fade" id="modalIndustrial" role="dialog">
+	<div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Teléfonos Zona Industrial / Gaviotas / Tierra Colorada</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <p>Aquí está el listado para comunicarte y solicitar tu servicio</p>
+
+		  <p><a href="tel:3533205">3 53 32 05</a></p>
+		  <p><a href="tel:3537370">3 53 73 70</a></p>
+		  <p><a href="tel:3533207">3 53 32 07</a></p>
+		  <p><a href="tel:3143456">3 14 34 56</a></p>
+		  <p><a href="tel:3143457">3 14 34 57</a></p>
+        </div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+    </div>
+</div>
+<!--INDUSTRIAL-->
+
+<!--INDUSTRIAL-->
+<div class="modal fade" id="modal2000" role="dialog">
+	<div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Teléfonos Zona Industrial / Gaviotas / Tierra Colorada</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <p>Aquí está el listado para comunicarte y solicitar tu servicio</p>
+		  
+		  <p><a href="tel:3163617">3 16 36 17</a></p>
+		  <p><a href="tel:3163618">3 16 36 18</a></p>
+		  <p><a href="tel:3165602">3 16 56 02</a></p>
+		  <p><a href="tel:3166421">3 16 64 21</a></p>
+		  <p><a href="tel:3166422">3 16 64 22</a></p>
+
+		  <p><a href="tel:3166423">3 16 64 23</a></p>
+		  <p><a href="tel:3167006">3 16 70 06</a></p>
+		  <p><a href="tel:3167885">3 16 78 85</a></p>
+		  <p><a href="tel:3167886">3 16 78 86</a></p>
+
+        </div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+    </div>
+</div>
+<!--INDUSTRIAL-->
+    
+
+	<script> 
+        (function() {
+ 
+  window.addEventListener('load', function() {
+
+    var forms = document.getElementsByClassName('form_historial');
+   
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+         event.preventDefault();
+        event.stopPropagation();
+        form.classList.add('was-validated');
+
+            if (form.checkValidity()) {
+             var horaSolicitud = moment().format("YYYY-MM-DD HH:mm:ss");
+             var datos = $('#form_historial').serialize()+"&horaSolicitud="+horaSolicitud;
+            // alert(datos);
+            $.ajax({
+            url:"/list/solicitudFormulario/",
+            cache:false,
+            type:"POST",
+            data: datos,
+            dataType:"json",
+                     beforeSend : function()
+                      {    
+                     } ,
+                   success:function(respuesta){ 
+                    $('#form_historial')[0].reset();
+                    swal("¡Su solicitud se envió correctamente!\n"+"Folio "+respuesta.id, "", "success");
+                    }});
+              
+      /*          moment.locale('es');
+  var f1_p = moment($("#f1_p").val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+  var f2_p = moment($("#f2_p").val(), 'DD-MM-YYYY').format('YYYY-MM-DD');  
+  //console.log(f1_p);         
+       table_proceso.ajax.url("../historiales/?id_base="+jQuery("#fkBase").val()+"&fechaInicio="+f1_p+"&fechaFinal="+f2_p).load();   */
+    // window.location="/BDhp/?fechaInicio="+$("#f1_hp").val()+"&fechaFinal="+$("#f2_hp").val();
+ //swal("Base de Datos HP", "¡Se Descargo correctamente!", "success"); 
+
+        }
+
+        
+      }, false);
+
+    });
+  }, false);
+})();
+    function onlyNumberKey(evt) { 
+          
+        // Only ASCII charactar in that range allowed 
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode 
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
+            return false; 
+        return true; 
+    } 
+</script> 
+  </body>
+</html>

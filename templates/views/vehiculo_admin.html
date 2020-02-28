@@ -1,0 +1,1228 @@
+{% extends 'views/indexadmin.html' %}
+{% load staticfiles %}
+{% block style %}
+  <link rel="stylesheet" href="{% static 'adminlte/plugins/datatables/dataTables.bootstrap4.css' %}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/bootstrap-switch.css' %}">
+
+
+  
+ 
+{% endblock %}
+
+{% block conenedor %}
+<input type="hidden" name="tmp_vehiculo" id="tmp_vehiculo">
+<input type="hidden" name="tmp_estatus" id="tmp_estatus">
+<div class="modal fade" id="modal-eliminar" style="display: none;">
+          <div class="modal-dialog ">
+            <div class="modal-content">
+              <div class="modal-header">
+                   <h5 class="modal-title">Confirmar</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                
+                  <span aria-hidden="true">×</span></button>
+               
+              </div>
+              <div class="modal-body">
+                <p i">Eliminar la Solicitud # </p>
+                <input type="hidden" name="id_eliminar" id="id_eliminar">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="delete_solicitud()">Eliminar</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal"  >Cerrar</button>
+                
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+  <div class="modal fade" id="modal_vehiculo"  style="display: none;">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               
+                <h4 class="modal-title">Datos del Vehículo</h4>
+              </div>
+              <div class="modal-body">
+              
+ <form class="form_vehiculo" id="form_vehiculo" name="form_vehiculo" enctype="multipart/form-data" autocomplete="off" novalidate>
+                {% csrf_token %}
+                    <div class="box-body">
+                <div class="row">
+                 <input type="hidden" name="idVehiculo" id="idVehiculo">
+                 
+                 <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="nombre">Número económico</label>
+                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Número económico" required>
+                </div>
+                </div>
+                   <div class="col-lg-4">
+                  <div class="form-group">
+                  <label for="telefono">Tipo</label>
+                 <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Tipo" required>
+                </div>
+                    </div>
+                 
+                  <div class="col-lg-4">
+                  <div class="form-group">
+                  <label for="telefono">Placas</label>
+                 <input type="text" class="form-control" id="placas" name="placas" placeholder="placas" required>
+                </div>
+                 </div>
+                   </div>
+                    <div class="row">
+                  <div class="col-lg-4">
+                  <div class="form-group">
+                  <label for="telefono">Color</label>
+                 <input type="text" class="form-control" id="color" name="color" placeholder="color" required>
+                </div>
+                 </div>
+        
+       
+                 
+                     <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="base_prehospitalaria">kilometraje</label>
+                 <input type="number" class="form-control" id="kilometraje" name="kilometraje" placeholder="kilometraje"  required>
+                </div>
+                 </div>
+                     <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="base_prehospitalaria">Fotografía</label>
+                 <input type="file" class="form-control" id="foto" name="foto" placeholder="foto" required="">
+                </div>
+                 </div>
+         
+                 </div>
+                 <input type="hidden" name="fk_base" id="fk_base">
+                 <!--
+                <div class="form-group">
+                  <label for="exampleInputFile">File input</label>
+                  <input type="file" id="exampleInputFile">
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Check me out
+                  </label>
+                </div>
+                 -->
+              </div>
+               
+  
+              <!-- /.box-body -->
+
+        <div class="modal-footer">
+
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="submit" id="guardar_proceso" class="btn btn-primary">Guardar</button>
+
+              </div>
+               <div id="etiqueta" class="alert alert-success" role="alert" style="width: 100%;display: none;">
+                <a id="mensaje" style="color:white; text-align:center;"></a>
+                </div>
+     
+
+
+
+
+                   </div>
+            
+               </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+ <div class="modal fade" id="modal_servicio"  style="display: none;">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <!--<h4 class="modal-title">Guardar Proceso</h4>-->
+              </div>
+              <div class="modal-body">
+              
+ <form class="form_servicio" id="form_servicio" name="form_servicio" novalidate enctype="multipart/form-data" autocomplete="off">
+                {% csrf_token %}
+                    <div class="box-body">
+                  <div class="row">
+                 <input type="hidden" name="idServicio" id="idServicio">
+                  <input type="hidden" name="fk_unidad_vehiculo" id="fk_unidad_vehiculo">
+                 <!-- <input type="text" name="servicio_o_reparacion" id="servicio_o_reparacion" value="servicio">-->
+          
+               
+            
+                    <div class="col-lg-4">
+                  <div class="form-group">
+                  <label for="telefono">Fecha de Reingreso</label>
+                 <input type="text" class="form-control" id="fecha_ingreso" name="fecha_ingreso" placeholder="Fecha de reingreso" required="">
+                </div>
+                    </div>
+                 
+                  <div class="col-lg-4">
+                  <div class="form-group">
+                  <label for="telefono">Descripción</label>
+                 <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" required>
+                </div>
+                 </div>
+                      <div class="col-lg-4">
+                  <div class="form-group">
+                  <label for="telefono">costo</label>
+                 <input type="number" class="form-control" id="costo" name="costo" placeholder="costo" required>
+                </div>
+                 </div>
+                   </div>
+                    <div class="row">
+                  <div class="col-lg-4">
+                  <div class="form-group">
+                  <label for="telefono">Tipo mantenimiento</label>
+
+          <select class="form-control" id="servicio" name="servicio" required="">
+        <option value=""></option>
+        <option value='preventivo'>preventivo</option>
+        <option value='correctivo'>correctivo</option>
+     
+      </select>
+                
+                </div>
+                 </div>
+        
+       
+                 
+                     <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="base_prehospitalaria">kilometraje</label>
+                 <input type="number" class="form-control" id="kilometraje2" name="kilometraje2" placeholder="kilometraje"  required>
+                </div>
+                 </div>
+                  <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="base_prehospitalaria">Documentación</label>
+                 <input type="file" class="form-control" id="documentacion" name="documentacion" placeholder="Documentación" >
+                </div>
+                 </div>
+         
+                 </div>
+               
+                 <!--
+                <div class="form-group">
+                  <label for="exampleInputFile">File input</label>
+                  <input type="file" id="exampleInputFile">
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Check me out
+                  </label>
+                </div>
+                 -->
+              </div>
+               
+  
+              <!-- /.box-body -->
+
+        <div class="modal-footer">
+
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="submit" id="guardar_proceso" class="btn btn-primary">Guardar</button>
+
+              </div>
+               <div id="etiqueta" class="alert alert-success" role="alert" style="width: 100%;display: none;">
+                <a id="mensaje" style="color:white; text-align:center;"></a>
+                </div>
+     
+
+
+
+
+                   </div>
+            
+               </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+
+
+ <div class="modal fade" id="modal_servicio2"  style="display: none;">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  
+              <h4 class="modal-title">Datos del Servicio del vehículo</h4>
+              </div>
+              <div class="modal-body">
+              
+ <form class="form_servicio2" id="form_servicio2" name="form_servicio2" novalidate autocomplete="off">
+                {% csrf_token %}
+                    <div class="box-body">
+                  <div class="row">
+                
+                  <input type="hidden" name="fk_vehiculo" id="fk_vehiculo">
+                 <!-- <input type="text" name="servicio_o_reparacion" id="servicio_o_reparacion" value="servicio">-->
+          
+               
+                
+                    <div class="col-lg-12">
+                  <div class="form-group">
+                  <label for="telefono">Fecha de Salida</label>
+                 <input type="text" class="form-control" id="fecha_salida" name="fecha_salida" placeholder="Fecha de Salida" required>
+                </div>
+                    </div>
+                 
+            
+                   </div>
+            
+          
+                 <!--
+                <div class="form-group">
+                  <label for="exampleInputFile">File input</label>
+                  <input type="file" id="exampleInputFile">
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Check me out
+                  </label>
+                </div>
+                 -->
+              </div>
+               
+  
+              <!-- /.box-body -->
+
+        <div class="modal-footer">
+
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="submit" id="guardar_proceso" class="btn btn-primary">Guardar</button>
+
+              </div>
+               <div id="etiqueta" class="alert alert-success" role="alert" style="width: 100%;display: none;">
+                <a id="mensaje" style="color:white; text-align:center;"></a>
+                </div>
+     
+
+
+
+
+                   </div>
+            
+               </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+<div class="card card-primary card-outline direct-chat direct-chat-primary">
+              <div class="card-header" id="cabecera">
+               <h3><i class="fa fa-ambulance"></i> Ambulancias</h3>
+                  <div class="card-tools">
+                 
+                  <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                
+                  <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+
+
+              <div class="card-body" id="card1" style="display: block;">
+<center>
+  <br>
+<div class="col-md-4"></div>
+<div class="col-md-4">
+                 <select class="form-control" id="fkBase" name="fkBase"  onchange="cambiarBase(this)">   
+                 </select>
+                  </div>
+<div class="col-md-4"></div>
+</center>
+  
+
+<br>
+                <table id="tabla_vehiculo" width="100%"  style="font-size: 17px" class="table table-bordered table-striped ">
+        <thead>
+            <tr>
+                
+                <th></th> 
+                <th></th>  
+                <th>No. económico</th>
+      
+            
+                <th>Tipo</th> 
+             
+                <th>Placas</th>   
+                <th>Kilometraje</th>
+                <th>Color</th>
+                 
+                <th>Servicio</th> 
+                <th>Foto</th> 
+                <th>Detalles Serv.</th>
+                
+                  <th></th> 
+              
+            </tr>
+        </thead>
+         <tbody>
+        
+          </tbody>
+        <tfoot>
+               <tr>
+                <th></th> 
+                <th></th> 
+                <th>No. económico</th>
+               
+              <th>Tipo</th> 
+               
+                <th>Placas</th>    
+                <th>Kilometraje</th>
+                <th>Color</th>
+               
+                <th>Servicio</th> 
+                 <th>Foto</th>               
+                <th>Detalles Serv.</th>
+                
+                <th></th>  
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+              </div>
+             <div class="card-body" id="card2" style="display: none;">
+              <div class="row" id="servicio2">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+           <br>
+            </div>
+                <a class="btn btn-app" id="nuevo_servicio">
+                <i class="fa  fa-barcode"></i> Nuevo Servicio
+              </a>
+               <a class="btn btn-app" onclick="regresar();" id="nuevo_servicio">
+                <i class="fa  fa-table"></i> Regresar
+              </a>
+        </div>
+    
+    </div>
+   
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h2><center>Número Económico<p id="nEconomico"></p></center></h2> 
+  </div>
+ 
+</div> 
+                <table id="tabla_servicio"  style="font-size: 15px; width: 100%" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                
+       
+                <th></th>  
+                <th>Fecha Ingreso</th>
+      
+            
+                <th>Fecha Egreso</th> 
+             
+                <th>Tipo de Servicio</th>   
+                <th>Descripción</th>
+                <th>Documentación</th>
+             
+              
+            </tr>
+        </thead>
+         <tbody>
+        
+          </tbody>
+        <tfoot>
+               <tr>
+           
+                <th></th> 
+                <th>Fecha Ingreso</th>
+               
+              <th>Fecha Egreso</th> 
+               
+                <th>Tipo de Servicio</th>    
+                <th>Descripción</th>
+                <th>Documentación</th>
+               
+            </tr>
+        </tfoot>
+    </table>
+               </div>
+
+
+
+                <!-- /.direct-chat-pane -->
+           
+              <!-- /.card-body -->
+              <div class="card-footer" style="display: block;">
+         
+              </div>
+              <!-- /.card-footer-->
+            </div>
+{% endblock %}
+
+{% block scripts %}
+<script  src="{% static 'adminlte/dist/js/bootstrap-switch.js' %}" ></script>
+<script src="{% static 'adminlte/plugins/datatables/jquery.dataTables.js' %}"></script>
+<script src="{% static 'adminlte/plugins/datatables/dataTables.bootstrap4.js' %}"></script>
+<script  src="{% static 'adminlte/dist/js/bootstrap-switch.js' %}" ></script>
+<!--
+<link rel="stylesheet" href="{% static 'resources/plugins/datatimepicker/css/jquery.datetimepicker.css' %}">
+<link rel="stylesheet" href="{% static 'views/plugins/timepicker/bootstrap-timepicker.css' %}">
+<link rel="stylesheet" href="{% static 'views/plugins/datepicker/datepicker3.css' %}">
+<script type="text/javascript" src="{% static 'resources/plugins/datatimepicker/js/jquery.datetimepicker.full.js' %}"></script> 
+<script type="text/javascript" src="{% static 'views/plugins/datepicker/bootstrap-datepicker.js' %}"></script>
+-->
+
+<script src="{% static 'adminlte/dist/js/sweetalert.js' %}"></script> 
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery('#nombre').keypress(function(tecla) {
+        if(tecla.charCode == 160 ) 
+          return false;
+        //alert(tecla.charCode);
+    });
+});
+  var html="<option value=''>---</option>";
+  $.ajax({
+    url:"/basesPre/list/",
+    cache:false,
+    type:"GET",
+    dataType:"json",
+    success:function(respuesta){
+     
+           for(key in respuesta)
+           { 
+               html+="<option value='"+respuesta[key].id+"'>"+respuesta[key].nombre+"</option>";
+           }
+          
+             $("#fkBase").html(html);
+           }
+         });
+function cambiarBase(id)
+{ if(id.value!="")  
+  { table_vehiculo.ajax.url("../clasificar/vehiculos/?id_estatus=1&fk_base="+id.value).load();
+    // jQuery("#input_check").hide();
+    // jQuery("#input_check1").show();
+  }
+  id_base=id.value;
+}
+
+  function regresar()
+  {
+  jQuery("#card2").hide();
+  jQuery("#card1").show();
+  jQuery("#cabecera").show();
+  }
+  $('#fecha_salida').datepicker( {
+      autoclose: true , 
+      language: 'es',
+       format: 'yyyy-mm-dd'
+    });
+   $('#fecha_ingreso').datepicker( {
+      autoclose: true , 
+      language: 'es',
+       format: 'yyyy-mm-dd'
+    });
+   $("[name='alta_baja']").bootstrapSwitch('state',true);  
+   $("[name='alta_baja']").bootstrapSwitch('onText','Vehículos Activos');  
+   $("[name='alta_baja']").bootstrapSwitch('offText','Vehículos de Baja');  
+  $('input[name="alta_baja"]').on('switchChange.bootstrapSwitch', function(event, state) {
+    state=(state?estatus=1:estatus=4);
+    table_vehiculo.ajax.url('../clasificar/vehiculos/?id_estatus='+state+"&fk_base="+id_base).load();
+  });
+  $("[name='alta_baja1']").bootstrapSwitch('state',true);  
+  $("[name='alta_baja1']").bootstrapSwitch('onText','Vehículos Activos');  
+  $("[name='alta_baja1']").bootstrapSwitch('offText','Vehículos de Baja');  
+  $('input[name="alta_baja1"]').on('switchChange.bootstrapSwitch', function(event, state) {
+    state=(state?estatus=1:estatus=4);
+    if(jQuery("#fkBase").val()!="")
+    table_vehiculo.ajax.url('../clasificar/vehiculos/?id_estatus='+state+"&fk_base="+jQuery("#fkBase").val()).load();
+  });
+
+    $.ajax({
+            type: "GET",
+            url: "/pro/file/?id_usuario={{user.id}}",
+            cache:false,
+            async:false,
+            dataType:"json",
+            success: function(data) { 
+            id_base=data[0].fk_BasePrehospitalaria.id;
+            
+            
+   }
+
+});
+  $("#nuevo_vehiculo").click(function(){
+jQuery("#kilometraje").removeAttr('disabled');
+jQuery("#foto").removeAttr('disabled');
+      $("#modal_vehiculo").modal("show");        
+           jQuery("#idVehiculo").val("");
+           jQuery("#nombre").val("");
+           jQuery("#kilometraje").val("");
+           jQuery("#id").val(""); 
+           jQuery("#tipo").val(""); 
+           jQuery("#color").val(""); 
+           jQuery("#placas").val("");
+           jQuery("#foto").val("");
+           jQuery("#fk_base").val(id_base);
+     // document.getElementById('modal_vehiculo').reset();
+     // $("#modal_vehiculo")[0].reset();
+
+
+});
+
+    $("#nuevo_servicio").click(function(){
+        jQuery("#fecha_salida").val("");
+         $.ajax({
+            type: "GET",
+            url: "/buscar/vehiculos/"+jQuery("#tmp_vehiculo").val()+"/",
+            async:false,
+            //data: datos,
+          //  dataType:"json",
+            success: function(data) {   
+            // table_vehiculo.ajax.reload();      
+         jQuery("#tmp_estatus").val(data.estatus);
+           // alert(data.nombre);     
+            }
+             });
+      setTimeout(function(){ validarVeh(); }, 100); 
+     // mostrarKilometraje(jQuery("#tmp_vehiculo").val());
+        /*    jQuery("#nombre").val("");
+           jQuery("#kilometraje").val("");
+           jQuery("#id").val(""); 
+           jQuery("#tipo").val(""); 
+           jQuery("#color").val(""); 
+           jQuery("#placas").val("");*/
+     // document.getElementById('modal_vehiculo').reset();
+     // $("#modal_vehiculo")[0].reset();
+
+
+});
+    function validarVeh()
+    {
+       if(jQuery("#tmp_estatus").val()==1)
+      $("#modal_servicio2").modal("show");
+    else
+      swal("¡Ocupado!", "¡El vehículo  está ocupado!", "success");
+      jQuery("#fk_vehiculo").val(jQuery("#tmp_vehiculo").val());
+    }
+function agregarServicio(id,estatus,noEconomico)
+{ //alert(id);
+// $("#modal_servicio").modal("show");
+jQuery("#nEconomico").html(noEconomico);
+ jQuery("#card1").hide();
+ jQuery("#cabecera").hide();
+  jQuery("#card2").show();
+ jQuery("#fk_unidad_vehiculo").val(id);
+ jQuery("#tmp_vehiculo").val(id);
+ jQuery("#tmp_estatus").val(estatus);
+  table_serivicio.ajax.url('../serviciosPorVehiculo/?fk_vehiculo='+id).load();
+  mostrarKilometraje(id);
+ //alert(id);
+}
+(function() {
+  window.addEventListener('load', function() {
+    // Get the forms we want to add validation styles to
+    var forms = document.getElementsByClassName('form_servicio');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        var diferencia =parseInt(jQuery("#kilometraje2").val())-validarKm;
+         event.preventDefault();
+        event.stopPropagation();
+        var datos = new FormData($("#form_servicio")[0]);
+        datos.append("estatus", 2);
+//var datos = $('#form_servicio').serialize();
+//alert(datos);
+        form.classList.add('was-validated');
+            if (form.checkValidity()) {
+
+     if(diferencia<=0)
+     {
+ swal("El km tiene que ser mayor a "+validarKm,"", "warning");    
+     }
+     else
+     {
+                    swal({
+  title: "¿Estás Seguro que la unidad recorrió "+diferencia+" km?",
+  
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+                  $.ajax({
+            type: "PATCH",
+            contentType : false ,
+            processData : false ,
+            url: "/servicios_ambulacia/list/"+jQuery("#idServicio").val()+"/",
+            data: datos,
+            success: function(data) {  
+       
+            var km = jQuery("#kilometraje2").val();
+          
+             $.ajax({
+            type: "GET",
+            url: "/buscar/vehiculos/"+data.fk_unidad_vehiculo+"/",
+            //data: "kilometraje="+km,
+            success: function(data) { 
+            if(jQuery("#servicio").val()=="preventivo")  
+            { var proximo = parseInt(data.proximo_servicio)+5000;              
+            }
+            else
+            { var proximo=parseInt(data.proximo_servicio);
+            }
+              //alert(data.id+""+proximo);
+             $.ajax({
+            type: "PATCH",
+            url: "/buscar/vehiculos/"+data.id+"/",
+            data: "kilometraje="+km+"&proximo_servicio="+proximo+"&estatus=1",
+            success: function(data) {   
+         table_serivicio.ajax.url('../serviciosPorVehiculo/?fk_vehiculo='+data.id).load();
+         table_vehiculo.ajax.url('../clasificar/vehiculos/?id_estatus=1&fk_base='+id_base).load();
+          swal("GUARDADO!", "Se Guardo correctamente!", "success"); 
+          
+             setTimeout(function(){ $("#modal_servicio").modal('hide'); }, 500);  
+            }
+             }); 
+
+
+
+            }
+             });   
+            }
+             });
+
+  } else {
+   // swal("Your imaginary file is safe!");
+  }
+}); 
+      
+     }
+     
+
+   
+                }
+      }, false);
+    });
+  }, false);
+})();
+
+  (function() {
+  window.addEventListener('load', function() {
+    // Get the forms we want to add validation styles to
+    var forms = document.getElementsByClassName('form_vehiculo');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+         event.preventDefault();
+        event.stopPropagation();
+
+        form.classList.add('was-validated');
+            if (form.checkValidity()) {
+               if(jQuery("#idVehiculo").val()=="")
+               {
+          var proximo_servicio= jQuery("#kilometraje").val();  
+          proximo_servicio = parseInt(proximo_servicio)+5000;
+          var datos = new FormData($("#form_vehiculo")[0]);
+              datos.append("proximo_servicio", proximo_servicio);
+              datos.append("id",jQuery("#idVehiculo").val());
+          //var datos = $('#form_vehiculo').serialize()+"&proximo_servicio="+proximo_servicio+"&id="+jQuery("#idVehiculo").val(); 
+      $.ajax({
+            type: "POST",
+            url: "/vehiculos/",
+            data: datos,
+            contentType : false ,
+            processData : false ,
+            success: function(data) {   
+             table_vehiculo.ajax.reload();  
+            
+     swal("GUARDADO!", "Se Guardo correctamente!", "success"); 
+          
+             setTimeout(function(){ $("#modal_vehiculo").modal('hide'); }, 500);  
+             table_vehiculo.ajax.url("../clasificar/vehiculos/?id_estatus=1&fk_base="+id_base).load();
+            // alert("DATOS GUARDADOS");  
+            //alert(data);     
+            }
+             });
+             }
+                else{
+
+            var datos = $('#form_vehiculo').serialize();
+            var id=jQuery("#idVehiculo").val(); 
+            $.ajax({
+            type: "PATCH",
+            url: "/buscar/vehiculos/"+id+"/",
+            data: datos,
+            success: function(data) {   
+             table_vehiculo.ajax.reload();      
+             swal("GUARDADO!", "Se Guardo correctamente!", "success"); 
+          
+             setTimeout(function(){ $("#modal_vehiculo").modal('hide'); }, 500); 
+            //alert(data);     
+            }
+             });
+        }
+                }
+      }, false);
+    });
+  }, false);
+})();
+
+
+(function() {
+  window.addEventListener('load', function() {
+    // Get the forms we want to add validation styles to
+    var forms = document.getElementsByClassName('form_servicio2');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+         event.preventDefault();
+        event.stopPropagation();
+var datos = "fecha_salida="+jQuery("#fecha_salida").val()+"&fk_unidad_vehiculo="+jQuery("#fk_vehiculo").val();
+//alert(datos);
+        form.classList.add('was-validated');
+            if (form.checkValidity()) {
+             $.ajax({
+            type: "POST",
+            url: "/servicios_ambulacia/list/",
+            data: datos,
+            success: function(data) {   
+                $.ajax({
+            type: "PATCH",
+            url: "/buscar/vehiculos/"+jQuery("#fk_vehiculo").val()+"/",
+            data: "estatus=3",
+          // dataType:"json",
+            success: function(data) { 
+             swal("GUARDADO!", "Se Guardo correctamente!", "success"); 
+          
+             setTimeout(function(){ $("#modal_servicio2").modal('hide'); }, 500);   
+              table_serivicio.ajax.url('../serviciosPorVehiculo/?fk_vehiculo='+data.id).load();
+              table_vehiculo.ajax.url("../clasificar/vehiculos/?id_estatus=1&fk_base="+id_base).load();
+            }
+             });
+            }
+             });
+                }
+      }, false);
+    });
+  }, false);
+})();
+  table_vehiculo = $("#tabla_vehiculo").DataTable(
+            {
+                "language": {
+                "url": "{% static 'adminlte/plugins/datatables/json/Spanish.json'%}"
+            },
+            "bProcessing": true,
+            "sAjaxDataProp":"",
+            "iDisplayStart": 0,
+             "order": [[ 0, "asc" ]],
+             "searching" : true,
+             "paging": true,
+              "scrollX": true,
+             "ajax": "../clasificar/vehiculos/?id_estatus=1&fk_base="+id_base,
+
+              "columns": [
+                  { "data": "id" },
+                  { "data": "id" },
+                  { "data": "nombre" },
+                  { "data": "tipo" },
+                  { "data": "placas" },
+                  { "data": "kilometraje" },
+                  { "data": "color" },
+                  
+                  { "data": "kilometraje" },
+                  { "data": "foto" },
+                  { "data": "id" },
+                 
+                  { "data": "estatus" },
+             
+                
+                 // { "data": "id_lista_nominal" },
+
+
+
+              ]
+              , dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+               "columnDefs" :[
+                     {
+                      "targets": 0,
+                       "render": function (data, type, row, meta )
+                        {
+                          if(row.estatus==4)
+                            return "";
+                        else
+                             /* return "<a   style='color:red; cursor:pointer;' data-title='¿Está seguro que desea eliminar este vehículo?'   data-toggle='confirmation' id='"+data+"' data-singleton='true' data-popout='true'><span class=' fa fa-fw fa-trash-o'></span></a>";*/
+                          return "<a   style='color:red; cursor:pointer;'  onclick='eliminar("+data+",\""+row.placas+"\")' ><span class=' fa fa-fw fa-trash-o'></span></a>";
+
+
+
+                          }
+                 },
+                  {
+                      "targets": 8,
+                       "render": function (data, type, row, meta )
+                        {
+                          if(row.estatus==4)
+                            return "";
+                        else
+                             /* return "<a   style='color:red; cursor:pointer;' data-title='¿Está seguro que desea eliminar este vehículo?'   data-toggle='confirmation' id='"+data+"' data-singleton='true' data-popout='true'><span class=' fa fa-fw fa-trash-o'></span></a>";*/
+                         //  alert(data);
+                        // return "<a href={% static ''%}archivos/"+data+" download="+data+">"+data+"</a><img src={% static ''%}archivos/"+data+">";
+                        return "<a href={% static ''%}archivos/"+data+" download="+data+"  ><span class=' fa fa-fw fa-download'></span></a>";
+ 
+
+
+
+                          }
+                 }, 
+                   { 
+                      "targets": 1,
+                      "render": function (data, type, row, meta) {
+                        
+                         if(row.estatus==4)
+                            return "";
+                          else
+                     /*  return "<a  onclick='editarvehiculo("+row.id+")'  style='color:green; cursor:pointer; font-size:19px;' ><span class='glyphicon glyphicon-pencil'></span></a>";*/
+               return "<a  onclick='editarvehiculo("+row.id+")'  style='color:black; cursor:pointer;' ><span class='fa fa-fw fa-file-text-o'></span></a>";
+
+                      }
+
+                    },
+                     { 
+                      "targets": 9,
+                      "render": function (data, type, row, meta) {
+                        
+                         if(row.estatus==4)
+                            return "";
+                          else
+                       return "<a  onclick='agregarServicio("+row.id+","+row.estatus+",\""+row.nombre+"\")'  style='color:green; cursor:pointer; font-size:19px;' ><span class='fa fa-table'></span></a>";
+
+                      }
+
+                    },
+              
+                     { 
+                      "targets": 10,
+                      "render": function (data, type, row, meta) {
+                        
+                       if(data==4 || data==3 || data==5)
+                      return "";
+                      else
+                      return "<input type='checkbox' id='che_validar'  name='che_validar' value='"+row.id+"' "+((data==1) ? ("checked='checked'") : "")+" data-size='mini' > ";
+                      }
+                      },
+
+                        { 
+                      "targets": 7,
+                      "render": function (data, type, row, meta) {
+                        var porcentaje= row.proximo_servicio-data;
+                        //porcentaje=(data%5000);
+                       porcentaje=(Math.round(100-(porcentaje/5000*100)));
+                       if(porcentaje>100) porcentaje=100;
+                      //  return '<div class="progress"> <div class="progress-bar progress-bar-danger progress-bar-striped active" //style="width:30%"> 30%</div> </div>';
+                     //alert(data);                                                    progress-bar progress-bar-danger progress-bar-striped
+                     return '<div class="progress">  <div id="barra'+row.id+'" class="'+((porcentaje>90)? 'progress-bar progress-bar-danger progress-bar-striped' : 'progress-bar bg-success progress-bar-striped')+' active" role="progressbar"  aria-valuenow="'+data+'" aria-valuemin="0" aria-valuemax="100" style="width:'+porcentaje+'%"> '+porcentaje+'%</div></div>';
+                      }
+                      },
+                    
+                 ],
+                 "drawCallback": function( settings ) {
+                //   var newprogress=80;
+             //   $('#barra'+event.target.value).width(newprogress + "%").attr('aria-valuenow', newprogress);
+
+                   $("[name='che_validar']").bootstrapSwitch();
+                   $("[name='che_validar']").bootstrapSwitch('onText','Libre');  
+                   $("[name='che_validar']").bootstrapSwitch('offText','Ocupado');
+$('input[name="che_validar"]').on('switchChange.bootstrapSwitch', function(event, state) {
+     //var estatus=0;
+    
+     state=(state?estatus=1:estatus=2);
+  //   alert(state+"aqui");
+    $.ajax({url:"/buscar/vehiculos/"+event.target.value+"/",cache:false,dataType:"json",type:"PATCH", data:"estatus="+estatus,
+      success:function(respuesta)
+       {  
+ // table1.ajax.reload(); 
+       }
+  });
+});
+
+                /*   $("[data-toggle=confirmation]").confirmation(
+                    {container:"body",
+                     btnOkLabel: 'Eliminar',
+                    btnCancelLabel: 'Cancelar',
+                     onConfirm:function(event, element) {
+                      var id= $(element).attr("id");
+                      $.ajax({url:"/buscar/vehiculos/"+id+"/",cache:false,dataType:"json",type:"PATCH", data:"estatus=2",
+                         beforeSend : function()
+                              {
+                              } ,
+                        success:function(respuesta){
+                        table_vehiculo.ajax.reload();
+                        }});
+
+                    }});*/
+
+
+                 }
+          
+                 
+         } );
+ table_serivicio = $("#tabla_servicio").DataTable(
+            {
+            "bProcessing": true,
+            "sAjaxDataProp":"",
+            "iDisplayStart": 0,
+             "order": [[ 2, "desc" ]],
+             "searching" : true,
+             "paging": true,
+             "destroy": true,
+             "ajax": "../lista/serviciosVehiculos/",
+
+              "columns": [
+              
+                  { "data": "idServicio" },
+                  { "data": "fecha_ingreso" },
+                  { "data": "fecha_salida" },
+                  { "data": "servicio" },
+                  { "data": "descripcion" },
+                  { "data": "documentacion" },
+              ]
+              , dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+               "columnDefs" :[
+           
+                  { 
+                      "targets": 0,
+                      "render": function (data, type, row, meta) {
+                        
+                         if(row.estatus==2)
+                            return ""
+                          else
+                       return "<a  onclick='finServicio("+data+","+row.fk_unidad_vehiculo.kilometraje+")'  style='color:green; cursor:pointer; font-size:19px;' ><span class='fa fa-table'></span></a>";
+
+                      }
+
+                    }
+                    ,   { 
+                      "targets": 5,
+                      "render": function (data, type, row, meta) {
+                        if(row.estatus==2 && data!=null)
+                       return "<a href={% static ''%}archivos/"+data+" download="+data+"  ><span class=' fa fa-fw fa-download'></span></a>";
+                     else return "";
+                     
+
+                      }
+
+                    }
+
+
+                    
+                 ],
+                 "drawCallback": function( settings ) {
+                //   var newprogress=80;
+             //   $('#barra'+event.target.value).width(newprogress + "%").attr('aria-valuenow', newprogress);
+/*
+                   $("[name='che_validar']").bootstrapSwitch();
+                   $("[name='che_validar']").bootstrapSwitch('onText','Libre');  
+                   $("[name='che_validar']").bootstrapSwitch('offText','Ocupado');
+$('input[name="che_validar"]').on('switchChange.bootstrapSwitch', function(event, state) {
+     //var estatus=0;
+    
+     state=(state?estatus=1:estatus=4);
+     alert(state);
+    $.ajax({url:"/buscar/vehiculos/"+event.target.value+"/",cache:false,dataType:"json",type:"PATCH", data:"estatus="+estatus,
+      success:function(respuesta)
+       {  
+
+       }
+  });
+});*/
+
+                /*   $("[data-toggle=confirmation]").confirmation(
+                    {container:"body",
+                     btnOkLabel: 'Eliminar',
+                    btnCancelLabel: 'Cancelar',
+                     onConfirm:function(event, element) {
+                      var id= $(element).attr("id");
+                      $.ajax({url:"/buscar/vehiculos/"+id+"/",cache:false,dataType:"json",type:"PATCH", data:"estatus=2",
+                         beforeSend : function()
+                              {
+                              } ,
+                        success:function(respuesta){
+                        table_vehiculo.ajax.reload();
+                        }});
+
+                    }});*/
+
+
+                 }
+          
+                 
+         } );
+
+
+ function finServicio(id,km)
+ { $("#modal_servicio").modal("show");
+   validarKm=km;
+  jQuery("#fecha_ingreso").val("");
+  jQuery("#descripcion").val("");
+  jQuery("#servicio").val("");
+  jQuery("#costo").val("");
+  jQuery("#idServicio").val(id);
+  //alert(id);
+ }
+ function eliminarServicio(id)
+ {
+ $("#text_eliminar").html("Se eliminó:");
+$("#id_eliminar").val(id);
+
+/*
+swal({
+  title: "Good job!",
+  text: "You clicked the button!",
+  icon: "error",
+});
+*/
+
+swal({
+  title: "¿Estás Seguro?",
+  text: "Desea este servicio",
+  icon: "error",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+   // swal("Poof! Your imaginary file has been deleted!",{icon: "success",});
+          $.ajax({url:"/lista/serviciosVehiculo/"+id+"/",cache:false,dataType:"json",type:"DELETE",
+                         beforeSend : function()
+                              {
+                              } ,
+                        success:function(respuesta){
+                        table_vehiculo.ajax.reload();
+                         swal("Eliminado!", "¡Se eliminó correctamente!", "success");
+                        }});
+          
+  } else {
+   // swal("Your imaginary file is safe!");
+  }
+});
+
+
+ }
+function eliminar(id,placa){
+//$("#modal-eliminar").modal("show");
+$("#text_eliminar").html("Se eliminó: "+placa);
+$("#id_eliminar").val(id);
+
+/*
+swal({
+  title: "Good job!",
+  text: "You clicked the button!",
+  icon: "error",
+});
+*/
+
+swal({
+  title: "¿Estás Seguro?",
+  text: "Desea eliminar el vehiculo con placa: "+placa,
+  icon: "error",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+   // swal("Poof! Your imaginary file has been deleted!",{icon: "success",});
+          $.ajax({url:"/buscar/vehiculos/"+id+"/",cache:false,dataType:"json",type:"PATCH", data:"estatus=4",
+                         beforeSend : function()
+                              {
+                              } ,
+                        success:function(respuesta){
+                        table_vehiculo.ajax.reload();
+                         swal("Eliminado!", "¡Se eliminó correctamente!", "success");
+                        }});
+          
+  } else {
+   // swal("Your imaginary file is safe!");
+  }
+});
+
+
+
+}
+function editarvehiculo(id)
+{ //alert(id);
+ // $("#modal_vehiculo").hide();
+jQuery("#kilometraje").attr('disabled','disabled');
+jQuery("#foto").attr('disabled','disabled');
+    $("#modal_vehiculo").modal("show");
+       $.ajax({
+            type: "GET",
+            url: "/buscar/vehiculos/"+id+"/",
+            //data: datos,
+          //  dataType:"json",
+            success: function(data) {   
+            // table_vehiculo.ajax.reload();      
+           jQuery("#nombre").val(data.nombre);
+           jQuery("#kilometraje").val(data.kilometraje);
+           jQuery("#idVehiculo").val(data.id); 
+           jQuery("#tipo").val(data.tipo); 
+           jQuery("#color").val(data.color); 
+           jQuery("#placas").val(data.placas);
+           // alert(data.nombre);     
+            }
+             });
+
+}
+function mostrarKilometraje(id)
+{ //alert(id);
+ // $("#modal_vehiculo").hide();
+  //  $("#modal_vehiculo").modal("show");
+       $.ajax({
+            type: "GET",
+            url: "/buscar/vehiculos/"+id+"/",
+            //data: datos,
+          //  dataType:"json",
+            success: function(data) {   
+            // table_vehiculo.ajax.reload();      
+           //jQuery("#nombre").val(data.nombre);
+           jQuery("#kilometraje2").val(data.kilometraje);
+           //jQuery("#id").val(data.id); 
+           
+           //jQuery("#tipo").val(data.tipo); 
+           //jQuery("#color").val(data.color); 
+           //jQuery("#placas").val(data.placas);
+           // alert(data.nombre);     
+            }
+             });
+
+}
+
+</script>
+
+
+{% endblock %}
