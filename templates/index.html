@@ -772,7 +772,7 @@
   <!-- {% static '' %} -->
   <script src="{% static '/adminlte/plugins/moment/moment.min.js' %}"></script>
   <script src="{% static '/adminlte/plugins/moment/moment-with-locales.js' %}"></script>
-  <script src="{% static 'adminlte/dist/js/sweetalert.js' %}"></script>
+  <script src="{% static 'sweetalert.js' %}"></script>
   <script src="{% static '/js/jquery.min.js' %}"></script>
   <script src="{% static '/js/jquery-migrate-3.0.1.min.js' %}"></script>
   <script src="{% static '/js/popper.min.js' %}"></script>
@@ -908,8 +908,8 @@
                      } ,
                    success:function(respuesta){ 
                     $('#form_historial')[0].reset();
-                    //swal("¡Su solicitud se envió correctamente!\n"+"Folio "+respuesta.id, "", "success");
-					alert('Guardado');
+                    swal("¡Su solicitud se envió correctamente!\n"+"Folio "+respuesta.id, "", "success");
+					
                     }});
               
       /*          moment.locale('es');
