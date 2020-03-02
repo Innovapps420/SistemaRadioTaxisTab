@@ -180,6 +180,7 @@ swal({
        {    
        } ,
      success:function(respuesta){ 
+      table_origen.ajax.url("../estatus/solicitudFormulario/?estatus=2").load();
      swal("Eliminado!", "¡Se eliminó correctamente!", "success");    
      }});
         
