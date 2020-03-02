@@ -1,11 +1,11 @@
 {% extends 'views/indexadmin.html' %}
 {% load staticfiles %}
 {% block style %}
-  <link rel="stylesheet" href="{% static 'adminlte/plugins/datatables/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static '/adminlte/plugins/datatables/dataTables.bootstrap4.css' %}">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
- <link rel="stylesheet" href="{% static 'adminlte/dist/css/bootstrap-switch.css' %}">
+ <link rel="stylesheet" href="{% static '/adminlte/dist/css/bootstrap-switch.css' %}">
   
  
 {% endblock %}
@@ -113,13 +113,13 @@
 
 {% block scripts %}
 
-<script  src="{% static 'adminlte/dist/js/bootstrap-switch.js' %}" ></script>
-<script src="{% static 'adminlte/plugins/datatables/jquery.dataTables.js' %}"></script>
-<script src="{% static 'adminlte/plugins/datatables/dataTables.bootstrap4.js' %}"></script>
+<script  src="{% static '/adminlte/dist/js/bootstrap-switch.js' %}" ></script>
+<script src="{% static '/adminlte/plugins/datatables/jquery.dataTables.js' %}"></script>
+<script src="{% static '/adminlte/plugins/datatables/dataTables.bootstrap4.js' %}"></script>
 
 
 
-<script src="{% static 'adminlte/dist/js/sweetalert.js' %}"></script> 
+<script src="{% static '/adminlte/dist/js/sweetalert.js' %}"></script> 
 <script type="text/javascript">
  
  $( document ).ready(function() {
