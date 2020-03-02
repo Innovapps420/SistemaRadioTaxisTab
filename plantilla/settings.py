@@ -146,7 +146,8 @@ SITE_ID = 1
 
 #Descomentar despues ----
 
-#STATIC_URL = '/static/'
+STATIC_URL = '/home/enriqkeg/django/SistemaRadioTaxisTab/static/'
 #STATICFILES_DIRS=(os.path.join(BASE_DIR, 'static'),)
-#MEDIA_URL = os.path.join(BASE_DIR, "/static/")
-#MEDIA_ROOT = '/static/'
+STATICFILES_DIRS=(os.path.join(BASE_DIR, '/home/enriqkeg/django/SistemaRadioTaxisTab/static'),)
+MEDIA_URL = os.path.join(BASE_DIR, "/home/enriqkeg/django/SistemaRadioTaxisTab/static/")
+MEDIA_ROOT = '/home/enriqkeg/django/SistemaRadioTaxisTab/static/'

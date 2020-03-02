@@ -1,10 +1,10 @@
-#from django.core.files.storage import FileSystemStorage
+from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from django.conf.urls.static import static
 from django.db import models
 from django.contrib.auth.models import User
 
-#fs_fotos = FileSystemStorage(location=settings.STATICFILES_DIRS[0] +'/fotos')                                                           
+fs_fotos = FileSystemStorage(location=settings.STATICFILES_DIRS[0] +'/fotos')                                                           
 
 
 
@@ -19,8 +19,7 @@ class chofer(models.Model):
     telCasa = models.TextField(max_length=100, blank=True,null=True)
     telCelular = models.TextField(max_length=100, blank=True,null=True)
     urlQr= models.TextField(max_length=100, blank=True,null=True)
-    #foto = models.FileField(verbose_name='Orchivo', #storage=fs_fotos, help_text='Forografía', null=True, blank=True)
-    foto = models.FileField(verbose_name='Orchivo',  help_text='Forografía', null=True, blank=True)
+    foto = models.FileField(verbose_name='Archivo', storage=fs_fotos, help_text='Fotografía', null=True, blank=True)
 
     def __str__(self):
         return '%s' % self.id
