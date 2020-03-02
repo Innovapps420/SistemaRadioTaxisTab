@@ -99,7 +99,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'bd_taxi',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'taxisdb',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
