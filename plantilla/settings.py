@@ -100,7 +100,8 @@ DATABASES = {
         'NAME': 'bd_taxi',
         'USER': 'root',
         'PASSWORD': 'taxisdb',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        #'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'HOST': '34.66.248.113',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
