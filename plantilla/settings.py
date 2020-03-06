@@ -28,7 +28,7 @@ SECRET_KEY = 'jnlnydg$-ksn*%v-*(e_&3^5*_s3ig0u=%-(_o2r34h&1qomoc'
 DEBUG = False
 
 #ALLOWED_HOSTS = ['34.66.248.113']
-ALLOWED_HOSTS = ["34.66.248.113","www.sistemaradiotaxis.com.mx" , "sistemaradiotaxis.com.mx"]
+ALLOWED_HOSTS = ['127.0.0.1','34.66.248.113','www.sistemaradiotaxis.com.mx' , 'sistemaradiotaxis.com.mx', 'ns-cloud-b1.googledomains.com', 'ns-cloud-b2.googledomains.com', 'ns-cloud-b3.googledomains.com', 'ns-cloud-b4.googledomains.com']
 
 
 # Application definition
