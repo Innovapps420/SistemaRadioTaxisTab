@@ -27,7 +27,8 @@ SECRET_KEY = 'jnlnydg$-ksn*%v-*(e_&3^5*_s3ig0u=%-(_o2r34h&1qomoc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['34.66.248.113']
+#ALLOWED_HOSTS = ['34.66.248.113']
+ALLOWED_HOSTS = ['www.sistemaradiotaxis.com.mx , sistemaradiotaxis.com.mx']
 
 
 # Application definition
